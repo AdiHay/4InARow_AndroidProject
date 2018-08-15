@@ -2,4 +2,8 @@
     <string name="app_name">4InARow</string>
     <string name="facebook_app_id">[APP_ID]</string>
     <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
+    <string name="txt_username_signin">User Name:</string>
+    <string name="txt_pass_signin">Password:</string>
+    <string name="btn_signin">Sign In</string>
+    <string name="game_name">4 In A Row</string>
 </resources>
