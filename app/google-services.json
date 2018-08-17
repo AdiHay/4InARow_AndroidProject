@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "305984604047-g9ev1l97ed093me4c3f0gh95uv3qhf37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exoli.a4inarow",
+            "certificate_hash": "024cdd810427745adad1db99e4574f7aea88fc7c"
+          }
+        },
+        {
           "client_id": "305984604047-ql4p2c3rm3semsq96t078me4h5lnncqt.apps.googleusercontent.com",
           "client_type": 3
         }
