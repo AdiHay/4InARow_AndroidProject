@@ -10,4 +10,15 @@
     <string name="facebook_login_protocol_scheme" translatable="false">fb1:305984604047:android:b668a8444f34696a</string>
     <string name="enter_your_email">Enter Your Email</string>
     <string name="enter_password">Enter Password</string>
+    <string name="pass_min_msg">Password must be at least 8 characters</string>
+    <string name="login_signup_error">Incorrect mail and/or password or no user found</string>
+    <string name="dot">.</string>
+    <string name="underline">_</string>
+    <string name="user">user</string>
+    <string name="users">users</string>
+    <string name="enter_user_name">Enter User Name</string>
+    <string name="txt_username_signup">User Name:</string>
+    <string name="submit">Submit</string>
+    <string name="email_length_error">Please enter a valid E-mail</string>
+    <string name="enter_username_error">Please enter a user name</string>
 </resources>

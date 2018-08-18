@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,11 +22,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SignInActivity extends AppCompatActivity {
+public class StartScreeActivity extends AppCompatActivity {
 
-    private static final String TAG = "EmailPassword";
+    //private static final String TAG = "EmailPassword";
     private TextView txtGameName;
-    private TextView txtUserName;
+    private TextView txtEmail;
     private EditText edtEmail;
     private TextView txtPassword;
     private EditText edtUserPassword;
@@ -39,37 +40,55 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_start);
 
         bindUI();
 
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseDatabase.getInstance().getReference(getString(R.string.users));
+        intent = new Intent(StartScreeActivity.this, GameActivity.class);
     }
 
     private void bindUI() {
-        txtGameName = findViewById(R.id.txt_game_name);
-        txtUserName = findViewById(R.id.txt_username_signin);
-        edtEmail = findViewById(R.id.edt_email);
-        txtPassword = findViewById(R.id.txt_pass_signin);
-        edtUserPassword = findViewById(R.id.edt_pass);
-        btnSignIn = findViewById(R.id.btn_signin);
-        btnSignUp = findViewById(R.id.btn_signup);
+        txtGameName = (TextView)findViewById(R.id.txt_game_name);
+        txtEmail = (TextView)findViewById(R.id.txt_email_signin);
+        edtEmail = (EditText)findViewById(R.id.edt_email);
+        txtPassword = (TextView)findViewById(R.id.txt_pass_signin);
+        edtUserPassword = (EditText)findViewById(R.id.edt_pass);
+        btnSignIn = (Button)findViewById(R.id.btn_signin);
+        btnSignUp = (Button)findViewById(R.id.btn_signup);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = edtEmail.getText().toString();
-                final String password = edtUserPassword.getText().toString();
+                final String email = edtEmail.getText().toString().trim();
+                final String password = edtUserPassword.getText().toString().trim();
+
+                if (email.isEmpty()) {
+                    edtEmail.setError(getString(R.string.email_length_error));
+                    return;
+                }
+
+                if (password.length() < MINIMUM_PASSWORD_LENGTH) {
+                    edtUserPassword.setError(getString(R.string.pass_min_msg));
+                    return;
+                }
 
                 findUser(email, password);
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartScreeActivity.this, SignUpActivity.class));
             }
         });
     }
 
     private void findUser(final String email, final String password) {
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(StartScreeActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // If sign in fails, display a message to the user.
@@ -77,13 +96,13 @@ public class SignInActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             // there was an error
                             if (password.length() < MINIMUM_PASSWORD_LENGTH) {
-                                edtUserPassword.setError(getString(R.string.minimum_password));
+                                edtUserPassword.setError(getString(R.string.pass_min_msg));
                             } else {
-                                Toast.makeText(SignInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                Toast.makeText(StartScreeActivity.this, getString(R.string.login_signup_error), Toast.LENGTH_LONG).show();
                             }
                         } else { //If sign in succeeds, get the user from the database and put it in Intent for the next activity.
 
-                            String transMail = email.replace(getString(R.string.dot), getString(R.string.underscore));
+                            String transMail = email.replace(getString(R.string.dot), getString(R.string.underline));
                             db.child(transMail).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
