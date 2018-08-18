@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">4InARow</string>
-    <string name="facebook_app_id">[APP_ID]</string>
-    <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
     <string name="txt_email_signin">E-mail:</string>
     <string name="txt_pass_signin">Password:</string>
     <string name="btn_signin">Sign In</string>
@@ -10,4 +8,6 @@
 
     <string name="facebook_application_id" translatable="false">1:305984604047:android:b668a8444f34696a</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb1:305984604047:android:b668a8444f34696a</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="enter_password">Enter Password</string>
 </resources>
