@@ -43,17 +43,17 @@ public class SignUpActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String userName = edtUserName.getText().toString().trim();
                 final String email = edtEmail.getText().toString().trim();
+                final String userName = edtUserName.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
-
-                if (userName.isEmpty()) {
-                    edtUserName.setError(getString(R.string.enter_username_error));
-                    return;
-                }
 
                 if (email.isEmpty()) {
                     edtEmail.setError(getString(R.string.email_length_error));
+                    return;
+                }
+
+                if (userName.isEmpty()) {
+                    edtUserName.setError(getString(R.string.enter_username_error));
                     return;
                 }
 
@@ -63,7 +63,6 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 createUser(userName, email, password);
-
             }
         });
     }
@@ -73,25 +72,20 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user.
                         if (!task.isSuccessful()) {
                             Toast.makeText(SignUpActivity.this, R.string.login_signup_error + "" + task.getException(),
                                     Toast.LENGTH_LONG).show();
-                        } else { // If sign in succeeds, create a new user and add it to the database.
-
-
+                        } else {
                             Intent intent = new Intent(SignUpActivity.this, GameActivity.class);
 
 
                             String userID = db.push().getKey();
-                            User theUser = new User(email, userName, userID);
-                            String transMail = theUser.getEmail().replace(".", "_");
-                            db.child(transMail).setValue(theUser);
-                            intent.putExtra(getString(R.string.user), theUser);
+                            User user = new User(email, userName, userID);
+                            db.setValue(user);
+                            intent.putExtra(getString(R.string.user), user);
 
                             startActivity(intent);
                             finish();
-
                         }
                     }
                 });
