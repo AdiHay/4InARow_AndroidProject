@@ -1,4 +1,4 @@
-package com.example.exoli.a4inarow;
+package com.example.exoli.a4inarow.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exoli.a4inarow.R;
 import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -91,16 +92,13 @@ public class StartScreeActivity extends AppCompatActivity {
                 .addOnCompleteListener(StartScreeActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user.
-//                        progressBar.setVisibility(View.GONE);
                         if (!task.isSuccessful()) {
-                            // there was an error
                             if (password.length() < MINIMUM_PASSWORD_LENGTH) {
                                 edtUserPassword.setError(getString(R.string.pass_min_msg));
                             } else {
                                 Toast.makeText(StartScreeActivity.this, getString(R.string.login_signup_error), Toast.LENGTH_LONG).show();
                             }
-                        } else { //If sign in succeeds, get the user from the database and put it in Intent for the next activity.
+                        } else {
 
                             String transMail = email.replace(getString(R.string.dot), getString(R.string.underline));
                             db.child(transMail).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -127,7 +125,6 @@ public class StartScreeActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
