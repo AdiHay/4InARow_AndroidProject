@@ -1,4 +1,4 @@
-package com.example.exoli.a4inarow;
+package com.example.exoli.a4inarow.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exoli.a4inarow.R;
+import com.example.exoli.a4inarow.classes.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -81,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             String userID = db.push().getKey();
                             User user = new User(email, userName, userID);
-                            db.setValue(user);
+                            db.child(userName).setValue(user);
                             intent.putExtra(getString(R.string.user), user);
 
                             startActivity(intent);

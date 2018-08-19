@@ -1,8 +1,10 @@
-package com.example.exoli.a4inarow;
+package com.example.exoli.a4inarow.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
+import com.example.exoli.a4inarow.R;
+import com.example.exoli.a4inarow.classes.User;
 
 public class GameActivity extends AppCompatActivity {
 

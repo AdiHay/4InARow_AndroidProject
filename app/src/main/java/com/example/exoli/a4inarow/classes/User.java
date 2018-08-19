@@ -1,4 +1,4 @@
-package com.example.exoli.a4inarow;
+package com.example.exoli.a4inarow.classes;
 
 import java.io.Serializable;
 
