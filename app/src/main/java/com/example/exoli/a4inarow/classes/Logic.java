@@ -1,5 +1,9 @@
 package com.example.exoli.a4inarow.classes;
 
+import android.widget.ImageView;
+
+import java.util.ArrayList;
+
 public class Logic {
 
     private boolean isDrew;
@@ -13,7 +17,7 @@ public class Logic {
     private int p;
     private int q;
     private static final int WIN_CONDITION = 4;
-    private enum Status {CONTINUE, DREW, WIN_P1, WIN_P2}
+    public enum Status {CONTINUE, DRAW, WIN_P1, WIN_P2}
 
     public Logic (int[][] board, int[] freeCells) {
         this.board = board;
@@ -90,6 +94,14 @@ public class Logic {
             }
         }
         return false;
+    }
+
+    public ArrayList<ImageView> getWinDiscs(ImageView[][] cells) {
+        ArrayList<ImageView> combination = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            combination.add(cells[p + winY * i][q + winX * i]);
+        }
+        return combination;
     }
 
     public void placeMove(int column, int player) {
@@ -203,5 +215,16 @@ public class Logic {
 
     public int getRowsNum() {
         return rowsNum;
+    }
+
+    public void displayBoard() {
+        System.out.println();
+        for (int i = 0; i <= 5; ++i) {
+            for (int j = 0; j <= 6; ++j) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }

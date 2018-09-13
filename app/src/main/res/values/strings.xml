@@ -22,4 +22,16 @@
     <string name="mode_1on1_same">1 On 1\n(Same phone)</string>
     <string name="mode_1on1_web">1 on 1\n(Web)</string>
     <string name="mode_1vspc">1 vs. Computer</string>
+    <string name="opponent_ai">Computer</string>
+    <string name="opponent_player">Friend</string>
+    <string name="draw">It\'s a draw</string>
+    <string name="you_win">You Win!</string>
+    <string name="you_lose">You Lost!</string>
+    <string name="friend_win">Guest Wins!</string>
+    <string name="you">You</string>
+    <string name="restart_game">Restart Game</string>
+    <string name="reset_game">Reset Game?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="back">Go Back?</string>
 </resources>

@@ -2,8 +2,8 @@ package com.example.exoli.a4inarow.classes;
 
 public class AI {
 
-    protected static final int USER = 1;
-    protected static final int AI_USER = 2;
+    public static final int USER = 1;
+    public static final int AI_USER = 2;
 
     private final Logic logic;
 
@@ -17,9 +17,9 @@ public class AI {
         this.maxDepth = depth;
     }
 
-//    public int getColumn() {
-//        return move(AI.AI_USER, AI.USER, -10000, 10000, maxDepth).getColumn();
-//    }
+    public int getColumn() {
+        return move(AI_USER, USER, -10000, 10000, maxDepth).getCol();
+    }
 
     private Move move(int player1, int player2, int bestP1Score, int bestP2Score, int depth) {
         Move best = new Move(-1, player1 == AI.AI_USER ? bestP1Score : bestP2Score);
