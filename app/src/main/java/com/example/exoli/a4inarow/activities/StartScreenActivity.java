@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class StartScreeActivity extends AppCompatActivity {
+public class StartScreenActivity extends AppCompatActivity {
 
     //private static final String TAG = "EmailPassword";
     private TextView txtGameName;
@@ -47,7 +47,7 @@ public class StartScreeActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference(getString(R.string.users));
-        intent = new Intent(StartScreeActivity.this, GameActivity.class);
+        intent = new Intent(StartScreenActivity.this, GameModeActivity.class);
     }
 
     private void bindUI() {
@@ -82,21 +82,21 @@ public class StartScreeActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartScreeActivity.this, SignUpActivity.class));
+                startActivity(new Intent(StartScreenActivity.this, SignUpActivity.class));
             }
         });
     }
 
     private void findUser(final String email, final String password) {
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(StartScreeActivity.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(StartScreenActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
                             if (password.length() < MINIMUM_PASSWORD_LENGTH) {
                                 edtUserPassword.setError(getString(R.string.pass_min_msg));
                             } else {
-                                Toast.makeText(StartScreeActivity.this, getString(R.string.login_signup_error), Toast.LENGTH_LONG).show();
+                                Toast.makeText(StartScreenActivity.this, getString(R.string.login_signup_error), Toast.LENGTH_LONG).show();
                             }
                         } else {
 
