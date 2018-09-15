@@ -78,8 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(SignUpActivity.this, R.string.login_signup_error + "" + task.getException(),
                                     Toast.LENGTH_LONG).show();
                         } else {
-                            Intent intent = new Intent(SignUpActivity.this, GameActivity.class);
-
+                            Intent intent = new Intent(SignUpActivity.this, GameModeActivity.class);
 
                             String userID = db.push().getKey();
                             User user = new User(email, userName, userID);

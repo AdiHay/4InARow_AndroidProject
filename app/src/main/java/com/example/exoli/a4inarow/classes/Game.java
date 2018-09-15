@@ -40,4 +40,13 @@ public class Game implements Serializable {
     public void setLdt(LocalDateTime ldt) {
         this.ldt = ldt;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "winner=" + winner +
+                ", loser=" + loser +
+                ", ldt=" + ldt +
+                '}';
+    }
 }

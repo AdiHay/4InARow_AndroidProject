@@ -7,14 +7,19 @@ public class User implements Serializable {
     private String password;
     private String userName;
     private String userID;
+    private static int guestID = 1;
 
-    public User() {
-    }
+    public User() { }
 
     public User(String email, String userName, String userID) {
         this.email = email;
         this.userName = userName;
         this.userID = userID;
+    }
+
+    public static User guest() {
+        String guestName = "guest" + guestID++;
+        return new User("", guestName, guestName);
     }
 
     public String getEmail() {
